@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: beerdb
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/beerdb
+      REDIS_HOST: redis
+      JWT_SECRET: changeme
+    depends_on:
+      - postgres
+      - redis
+
+volumes:
+  pgdata:

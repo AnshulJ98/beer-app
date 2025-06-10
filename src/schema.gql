@@ -1,0 +1,43 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Beer {
+  id: Int!
+  name: String!
+  type: String!
+  abv: Float!
+  available: Boolean!
+}
+
+type User {
+  id: Int!
+  email: String!
+  name: String!
+  role: String!
+}
+
+type Query {
+  beers: [Beer!]!
+  beer(id: Int!): Beer!
+  users: [User!]!
+  user(id: Int!): User!
+}
+
+type Mutation {
+  createBeer(createBeerInput: CreateBeerInput!): Beer!
+  createUser(createUserInput: CreateUserInput!): User!
+}
+
+input CreateBeerInput {
+  name: String!
+  type: String!
+  abv: Float!
+  available: Boolean!
+}
+
+input CreateUserInput {
+  email: String!
+  name: String!
+  role: String!
+}
